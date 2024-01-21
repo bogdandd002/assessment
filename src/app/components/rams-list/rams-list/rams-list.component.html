@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xs-12">
+        <input [(ngModel)]="newRamsTitle" placeholder="Rams title">
+        <input [(ngModel)]="newRamsRev" type="number" placeholder="Revision">
+        <input [(ngModel)]="newRevDate" type="date" placeholder="Revision Date">
+        <!-- <input type="radio" id="approved" name="status" [(ngModel)]="Aproved">
+        <label for="aproved">Aproved</label><br>
+        <input type="radio" id="coments" name="status" value="">
+        <label for="coments">Coments</label><br>
+        <input type="radio" id="revised" name="status" value="JavaScript">
+        <label for="revised">Revised</label> -->
+        <button (click)="addRams()" class="btn btn-success">New Rams</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <ol>
+            <li *ngFor="let ram of rams">
+                {{ram.name}} {{ram.rev}}{{ram.rev_date | date: 'dd.MM.yyy'}}           
+            </li>
+        </ol>
+     </div>
+</div>
