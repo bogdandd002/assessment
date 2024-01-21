@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rams } from '../../components-models/rams';
 
 @Component({
@@ -6,7 +6,7 @@ import { Rams } from '../../components-models/rams';
   templateUrl: './rams-list.component.html',
   styleUrl: './rams-list.component.css'
 })
-export class RamsListComponent {
+export class RamsListComponent implements OnInit{
 
   newRamsTitle: string = " ";
   newRamsRev: number = 0;
@@ -15,6 +15,12 @@ export class RamsListComponent {
   newFileLoc: string = " ";
 
   rams: Rams [] = []
+
+  ngOnInit(): void {
+    let savedRams = localStorage.getItem("rams")
+
+    this.rams = savedRams ? JSON.parse(savedRams) : []
+  }
   
 addRams (){
   if(this.newRamsTitle.trim().length && this.newRevDate){
@@ -32,7 +38,13 @@ addRams (){
     }
 
     this.rams.push(newRams)
+
+    localStorage.setItem("rams", JSON.stringify(this.rams))
   }
 }
 
+reviseRams (index: number){
+  this.rams.splice(index, 1)
+  localStorage.setItem("rams", JSON.stringify(this.rams))
+}
 }

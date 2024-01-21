@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-xs-12">
         <input [(ngModel)]="newRamsTitle" placeholder="Rams title">
@@ -16,8 +17,9 @@
 <div class="row">
     <div class="col-xs-12">
         <ol>
-            <li *ngFor="let ram of rams">
-                {{ram.name}} {{ram.rev}}{{ram.rev_date | date: 'dd.MM.yyy'}}           
+            <li *ngFor="let ram of rams; index as i">
+                {{ram.name}} {{ram.rev}}{{ram.rev_date | date: 'dd.MM.yyy'}} 
+                <button (click)="reviseRams(i)" class="btn btn-success">Delete</button>          
             </li>
         </ol>
      </div>
