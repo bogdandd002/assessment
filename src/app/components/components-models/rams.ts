@@ -2,6 +2,7 @@ export interface Rams {
 
     id: number,
     name: string,
+    subcon: string,
     rev: number,
     rev_date: Date,
     status: {

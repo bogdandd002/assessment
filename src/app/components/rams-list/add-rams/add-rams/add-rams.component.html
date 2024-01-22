@@ -1,0 +1,41 @@
+<form [formGroup]="newRam" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Rams Name:</label>
+        <input type="text" formControlName="ramsTitle">
+    </div>
+    <div>
+        <label>Subcontractor Name:</label>
+        <input type="text" formControlName="subconName">
+    </div>
+    <div>
+        <label>Rev Number:</label>
+        <input type="number" formControlName="revNo">
+    </div>
+    <div>
+        <label>Rev Date:</label>
+        <input type="date" formControlName="revDate">
+    </div>
+    <div>
+    <fieldset>
+        <legend>Status:</legend>
+        <div>
+          <input type="radio" id="approved" name="approved" value="approved" />
+          <label for="approved">Approved</label>
+        </div>    
+        <div>
+          <input type="radio" id="dewey" name="drone" value="rejected" />
+          <label for="dewey">Require alteration</label>
+        </div>   
+        <div>
+          <input type="radio" id="louie" name="drone" value="pending" />
+          <label for="louie">Pending approval</label>
+        </div>
+      </fieldset>
+      </div>
+      <div>
+        <label>File loc:</label>
+        <input type="text" formControlName="fileLoc">
+    </div>
+
+    <button type="submit">Create</button>
+</form>

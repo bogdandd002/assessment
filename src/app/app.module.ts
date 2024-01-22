@@ -5,19 +5,22 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './full-layout/layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { RamsListComponent } from './components/rams-list/rams-list/rams-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddRamsComponent } from './components/rams-list/add-rams/add-rams/add-rams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     DashboardComponent,
-    RamsListComponent,   
+    RamsListComponent,
+    AddRamsComponent,   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
