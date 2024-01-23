@@ -1,33 +1,47 @@
-<form [formGroup]="newRam" (ngSubmit)="onSubmit()">
+<form [formGroup]="newRamForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Rams Name:</label>
+        <input type="number" formControlName="ramsId">
+        <div *ngIf="newRamForm.get('ramsId')?.invalid && newRamForm.get('ramsId')?.touched">
+        Rams name is required</div>
+    </div>
     <div>
         <label>Rams Name:</label>
         <input type="text" formControlName="ramsTitle">
+        <div *ngIf="newRamForm.get('ramsTitle')?.invalid && newRamForm.get('ramsTitle')?.touched">
+        Rams name is required</div>
     </div>
     <div>
         <label>Subcontractor Name:</label>
         <input type="text" formControlName="subconName">
+        <div *ngIf="newRamForm.get('subconName')?.invalid && newRamForm.get('subconName')?.touched">
+            Sucontractor field is required</div>
     </div>
     <div>
         <label>Rev Number:</label>
         <input type="number" formControlName="revNo">
+        <div *ngIf="newRamForm.get('revNo')?.invalid && newRamForm.get('revNo')?.touched">
+            Revision is required</div>
     </div>
     <div>
         <label>Rev Date:</label>
         <input type="date" formControlName="revDate">
+        <div *ngIf="newRamForm.get('revDate')?.invalid && newRamForm.get('revDate')?.touched">
+            Revision date is required</div>
     </div>
     <div>
     <fieldset>
         <legend>Status:</legend>
         <div>
-          <input type="radio" id="approved" name="approved" value="approved" />
+          <input type="radio" id="approved" formControlName="approved" value="approved" />
           <label for="approved">Approved</label>
         </div>    
         <div>
-          <input type="radio" id="dewey" name="drone" value="rejected" />
+          <input type="radio" id="dewey" formControlName="rejected" value="rejected" />
           <label for="dewey">Require alteration</label>
         </div>   
         <div>
-          <input type="radio" id="louie" name="drone" value="pending" />
+          <input type="radio" id="louie" formControlName="pending" value="pending" />
           <label for="louie">Pending approval</label>
         </div>
       </fieldset>
@@ -37,5 +51,5 @@
         <input type="text" formControlName="fileLoc">
     </div>
 
-    <button type="submit">Create</button>
+    <button type="submit" [disabled]="newRamForm.invalid">Create</button>
 </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Rams } from '../../components-models/rams';
 import { Router, RouterModule } from '@angular/router';
+import { AddRamsService } from '../add-rams/add-rams/add-rams.service';
 
 @Component({
   selector: 'app-rams-list',
@@ -9,21 +10,25 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class RamsListComponent implements OnInit{
 
-  newRamsTitle: string = " ";
-  newRamsRev: number = 0;
-  newRevDate: Date = new Date();
-  newSubcon: string = " ";
-  newFileLoc: string = " ";
+  // newRamsTitle: string = " ";
+  // newRamsRev: number = 0;
+  // newRevDate: Date = new Date();
+  // newSubcon: string = " ";
+  // newFileLoc: string = " ";
 
-  constructor(private router: Router) { 
-  }
+  rams: Rams [] = [];
 
-  rams: Rams [] = []
+  constructor(
+    private router: Router,
+    private ramsService: AddRamsService ) { }
 
   ngOnInit(): void {
-    let savedRams = localStorage.getItem("rams")
+    console.log(this.rams);
+    this.rams = this.ramsService.getRams();
 
-    this.rams = savedRams ? JSON.parse(savedRams) : []
+    // let savedRams = localStorage.getItem("rams")
+
+    // this.rams = savedRams ? JSON.parse(savedRams) : []
   }
   
 addRams (){
@@ -51,7 +56,8 @@ addRams (){
 }
 
 reviseRams (index: number){
-  this.rams.splice(index, 1)
-  localStorage.setItem("rams", JSON.stringify(this.rams))
+  this.ramsService.deleteRams(index);
+  // this.rams.splice(index, 1)
+  // localStorage.setItem("rams", JSON.stringify(this.rams))
 }
 }
