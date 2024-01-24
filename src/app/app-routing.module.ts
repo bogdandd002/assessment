@@ -9,7 +9,8 @@ import { AddRamsComponent } from "./components/rams-list/add-rams/add-rams/add-r
 const routes: Routes = [
     { path:'', component: DashboardComponent},
     { path:'rams', component: RamsListComponent},
-    {path: 'addrams', component: AddRamsComponent}
+    {path: 'addrams', component: AddRamsComponent},
+    {path:"edit/:id", component: AddRamsComponent}
        
     
 ];

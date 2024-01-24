@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AddRamsService } from './add-rams.service';
 import { Rams } from '../../../components-models/rams';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-rams',
@@ -10,35 +11,53 @@ import { Rams } from '../../../components-models/rams';
 })
 export class AddRamsComponent implements OnInit {
 
-  newRamForm: FormGroup = new FormGroup({});
+  ramsForm: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
-    private ramsService: AddRamsService){
+    private ramsService: AddRamsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute){
 
   }
 
   ngOnInit(): void {
-    this.newRamForm =this.formBuilder.group({
-      ramsId: [''],
+    this.ramsForm = this.formBuilder.group({
       ramsTitle: ['', Validators.required],
-      subconName: ['', Validators.required],
-      revNo: ['', Validators.required],
+      ramsSubcon: ['', Validators.required],
+      revNumber: ['', Validators.required],
       revDate: ['', Validators.required],
-      approved: [''],
-      rejected: [''],
-      pending: [''],
-      fileLoc: [''],
-
+      ramsStatus: ['', Validators.required]
     })
+
+    let id = this.activatedRoute.snapshot.paramMap.get('id')
+
+    if(id){
+      let rams = this.ramsService.getRam(id)
+
+      if(rams)
+        this.ramsForm.patchValue(rams)
+    }
   }
 
   onSubmit() {
-    if (this.newRamForm.valid){
-      
-      let rams: Rams = this.newRamForm.value;
-      this.ramsService.addRams(rams)
+    if(this.ramsForm.valid){
 
+      let rams: Rams = this.ramsForm.value;
+
+      let id = this.activatedRoute.snapshot.paramMap.get('id')
+
+      if(id){
+        // Update
+        this.ramsService.reviseRams(id, rams)
+      } else {
+        // New
+        this.ramsService.addRams(rams)   
+
+      }
+
+      this.router.navigate(['/rams'])
     }
   }
+
 }

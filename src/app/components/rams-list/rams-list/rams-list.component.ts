@@ -10,54 +10,23 @@ import { AddRamsService } from '../add-rams/add-rams/add-rams.service';
 })
 export class RamsListComponent implements OnInit{
 
-  // newRamsTitle: string = " ";
-  // newRamsRev: number = 0;
-  // newRevDate: Date = new Date();
-  // newSubcon: string = " ";
-  // newFileLoc: string = " ";
-
-  rams: Rams [] = [];
+  rams: Rams[] = [];
 
   constructor(
     private router: Router,
-    private ramsService: AddRamsService ) { }
+    private addRams: AddRamsService){}
 
   ngOnInit(): void {
-    console.log(this.rams);
-    this.rams = this.ramsService.getRams();
 
-    // let savedRams = localStorage.getItem("rams")
-
-    // this.rams = savedRams ? JSON.parse(savedRams) : []
+    this.rams = this.addRams.getRams();
   }
-  
-addRams (){
 
-  this.router.navigate(['/addrams']);
-  // if(this.newRamsTitle.trim().length && this.newRevDate){
-  //   let newRams: Rams = {
-  //     id:1,
-  //     name: this.newRamsTitle,
-  //     subcon: this.newSubcon,
-  //     rev: this.newRamsRev,
-  //     rev_date: this.newRevDate,
-  //     status: {
-  //       approved : false,
-  //       rejected_w_comments : false,
-  //       revised_waiting_comments: false
-  //     },
-  //     file_location: this.newFileLoc
-  //   }
+  newRams(){
+    this.router.navigate(['/addrams']);
+  }
 
-  //   this.rams.push(newRams)
+  deleteRam(id: string){
+    this.addRams.deleteRams(id);
+  }
 
-  //   localStorage.setItem("rams", JSON.stringify(this.rams))
-  // }
-}
-
-reviseRams (index: number){
-  this.ramsService.deleteRams(index);
-  // this.rams.splice(index, 1)
-  // localStorage.setItem("rams", JSON.stringify(this.rams))
-}
 }

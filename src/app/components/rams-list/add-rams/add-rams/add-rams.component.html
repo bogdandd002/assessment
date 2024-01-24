@@ -1,55 +1,52 @@
-<form [formGroup]="newRamForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label>Rams Name:</label>
-        <input type="number" formControlName="ramsId">
-        <div *ngIf="newRamForm.get('ramsId')?.invalid && newRamForm.get('ramsId')?.touched">
-        Rams name is required</div>
-    </div>
-    <div>
-        <label>Rams Name:</label>
-        <input type="text" formControlName="ramsTitle">
-        <div *ngIf="newRamForm.get('ramsTitle')?.invalid && newRamForm.get('ramsTitle')?.touched">
-        Rams name is required</div>
-    </div>
-    <div>
-        <label>Subcontractor Name:</label>
-        <input type="text" formControlName="subconName">
-        <div *ngIf="newRamForm.get('subconName')?.invalid && newRamForm.get('subconName')?.touched">
-            Sucontractor field is required</div>
-    </div>
-    <div>
-        <label>Rev Number:</label>
-        <input type="number" formControlName="revNo">
-        <div *ngIf="newRamForm.get('revNo')?.invalid && newRamForm.get('revNo')?.touched">
-            Revision is required</div>
-    </div>
-    <div>
-        <label>Rev Date:</label>
-        <input type="date" formControlName="revDate">
-        <div *ngIf="newRamForm.get('revDate')?.invalid && newRamForm.get('revDate')?.touched">
-            Revision date is required</div>
-    </div>
-    <div>
-    <fieldset>
-        <legend>Status:</legend>
-        <div>
-          <input type="radio" id="approved" formControlName="approved" value="approved" />
-          <label for="approved">Approved</label>
-        </div>    
-        <div>
-          <input type="radio" id="dewey" formControlName="rejected" value="rejected" />
-          <label for="dewey">Require alteration</label>
-        </div>   
-        <div>
-          <input type="radio" id="louie" formControlName="pending" value="pending" />
-          <label for="louie">Pending approval</label>
+<h3 class="mt-5 mb-3">Create a new reservation</h3>
+
+<form [formGroup]="ramsForm" (ngSubmit)="onSubmit()">
+
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Rams Title:</label>
+            <input class="form-control" type="text" formControlName="ramsTitle">
+            <small class="text-danger" *ngIf="ramsForm.get('ramsTitle')?.invalid && ramsForm.get('ramsTitle')?.touched">
+                Rams Title is required.
+            </small>
         </div>
-      </fieldset>
-      </div>
-      <div>
-        <label>File loc:</label>
-        <input type="text" formControlName="fileLoc">
+
+        <div class="col">
+            <label class="form-label">Subcontractor:</label>
+            <input class="form-control" type="text" formControlName="ramsSubcon">
+            <small class="text-danger" *ngIf="ramsForm.get('ramsSubcon')?.invalid && ramsForm.get('ramsSubcon')?.touched">
+                Suncontractor is required.
+            </small>
+        </div>
     </div>
 
-    <button type="submit" [disabled]="newRamForm.invalid">Create</button>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Revision no:</label>
+            <input class="form-control" type="number" formControlName="revNumber">
+            <small class="text-danger" *ngIf="ramsForm.get('revNumber')?.invalid && ramsForm.get('revNumber')?.touched">
+                Guest Name is required.
+            </small>
+        </div>
+
+        <div class="col">
+            <label class="form-label">Revision Date:</label>
+            <input class="form-control" type="date" formControlName="revDate">
+            <small class="text-danger" *ngIf="ramsForm.get('revDate')?.invalid && ramsForm.get('revDate')?.touched">
+                Revision date is required.
+            </small>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-3">
+            <label class="form-label">Rams status:</label>
+            <input class="form-control" type="text" formControlName="ramsStatus">
+            <small class="text-danger" *ngIf="ramsForm.get('ramsStatus')?.invalid && ramsForm.get('ramsStatus')?.touched">
+                Rams Status is req.
+            </small>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="ramsForm.invalid">Submit</button>
 </form>

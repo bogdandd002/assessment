@@ -9,35 +9,40 @@ export class AddRamsService {
 
   private rams: Rams[] = [];
 
-  constructor(private router: Router,){
-    let savedRams = localStorage.getItem("rams");
-    this.rams = savedRams? JSON.parse(savedRams) : [];
+  constructor(){
+    let savedrams = localStorage.getItem("rams");
+    this.rams = savedrams? JSON.parse(savedrams) : [];
   }
 
-  //CRUD
+  // CRUD
 
-  getRams(): Rams[]{
+  getRams(): Rams[] {
     return this.rams;
   }
-  
-  getRam(id): Rams | undefined{
+
+  getRam(id: string): Rams | undefined {
     return this.rams.find(res => res.id === id);
   }
 
-  addRams(rams: Rams): void{
-    this.rams.push(rams);
-   localStorage.setItem("rams", JSON.stringify(this.rams));
-   this.router.navigate(['/rams']);
+  addRams(ram: Rams): void {
+
+    ram.id = Date.now().toString();
+
+    this.rams.push(ram);
+    localStorage.setItem("rams", JSON.stringify(this.rams));
   }
 
-  deleteRams(id): void{
+  deleteRams(id: string): void {
     let index = this.rams.findIndex(res => res.id === id);
-    this.rams.slice(index, 1);
+    this.rams.splice(index,1)
     localStorage.setItem("rams", JSON.stringify(this.rams));
   }
-  reviseRams(reviseRams: Rams): void{
-    let index = this.rams.findIndex (res => res.id === reviseRams.id);
-    this.rams[index] = reviseRams;
+
+  reviseRams(id: string, updatedram: Rams): void {
+    let index = this.rams.findIndex(res => res.id === id);
+    this.rams[index] = updatedram;
     localStorage.setItem("rams", JSON.stringify(this.rams));
   }
+  
 }
+

@@ -1,48 +1,42 @@
+<h3 class="mt-5 mb-3">ram List</h3>
 
-<div class="container-fluid">
-<div class="row">
-    <div class="col-xs-12">
-        <!-- <input [(ngModel)]="newRamsTitle" placeholder="Rams title">
-        <input [(ngModel)]="newRamsRev" type="number" placeholder="Revision">
-        <input [(ngModel)]="newRevDate" type="date" placeholder="Revision Date"> -->
-        <!-- <input type="radio" id="approved" name="status" [(ngModel)]="Aproved">
-        <label for="aproved">Aproved</label><br>
-        <input type="radio" id="coments" name="status" value="">
-        <label for="coments">Coments</label><br>
-        <input type="radio" id="revised" name="status" value="JavaScript">
-        <label for="revised">Revised</label> -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subcontractor</th>
+            <th>Rev No.</th>
+            <th>Rev Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ram of rams">
+            <td>{{ram.ramsTitle}}</td>
+            <td>{{ram.ramsSubcon}}</td>
+            <td>{{ram.revNumber}}</td>
+            <td> {{ram.revDate}} </td>
+            <td>{{ram.ramsStatus}}</td>
+            <td>
+                <button class="btn btn-sm btn-danger mx-1" (click)="deleteRam(ram.id)">Delete</button>
+                <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/edit', ram.id]">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button (click)="newRams()" class="btn btn-primary">New Rams</button>
     </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Rev</th>
-                <th>Subcontractor</th>
-                <th>Revision Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ram of rams; index as i">
-                <td>{{ram.name}}</td>
-                <td>{{ram.rev}}</td>
-                <td>{{ram.subcon}}</td>
-                <td>{{ram.rev_date | date: 'dd.MM.yyy'}}</td>
-                <td>{{ram.status}}</td>
-                <td><button (click)="reviseRams(i)" class="btn btn-danger">Delete</button></td>
-              </tr>
-            </tbody>
-          </table> 
-     </div>
-</div>
-<div class="row">
-  <div class="col-xs-3">
-    <button (click)="addRams()" class="btn btn-success">New Rams</button>
-      
   </div>
 </div>
-</div>
+
+<ul *ngIf="rams.length; else noram">
+
+</ul>
+
+<ng-template #noram>
+    <p>No ram available.</p>
+</ng-template>
