@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { AddRamsService } from './add-rams.service';
 import { Rams } from '../../../components-models/rams';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subcontractors } from '../../../components-models/subcontractors';
+import { AddSubcontractorService } from '../../../subcontractors/add-subcontractor/add-subcontractor.service';
 
 @Component({
   selector: 'app-add-rams',
@@ -11,17 +13,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AddRamsComponent implements OnInit {
 
+  status: string [] = ["Approved", "Require amendments", "Require reapproval"];
+  subcon: Subcontractors [] = [];
   ramsForm: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
     private ramsService: AddRamsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute){
+    private activatedRoute: ActivatedRoute, 
+    private subconList: AddSubcontractorService){
 
   }
 
   ngOnInit(): void {
+    this.subcon = this.subconList.getsubcon();
     this.ramsForm = this.formBuilder.group({
       ramsTitle: ['', Validators.required],
       ramsSubcon: ['', Validators.required],

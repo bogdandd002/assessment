@@ -1,4 +1,4 @@
-<h3 class="mt-5 mb-3">Create a new reservation</h3>
+<h3 class="mt-5 mb-3">Register new rams</h3>
 
 <form [formGroup]="ramsForm" (ngSubmit)="onSubmit()">
 
@@ -13,7 +13,10 @@
 
         <div class="col">
             <label class="form-label">Subcontractor:</label>
-            <input class="form-control" type="text" formControlName="ramsSubcon">
+            <select class="form-control" type="text" formControlName="ramsSubcon">
+                <option value="" disabled>Select subcontractor</option>
+                <option *ngFor="let sub of subcon">{{sub.subconName}}</option>
+            </select>
             <small class="text-danger" *ngIf="ramsForm.get('ramsSubcon')?.invalid && ramsForm.get('ramsSubcon')?.touched">
                 Suncontractor is required.
             </small>
@@ -41,7 +44,11 @@
     <div class="row mb-3">
         <div class="col-3">
             <label class="form-label">Rams status:</label>
-            <input class="form-control" type="text" formControlName="ramsStatus">
+            <!-- <input class="form-control" type="text" formControlName="ramsStatus"> -->
+            <select class="form-control" type="text" formControlName="ramsStatus">
+                <option value="" disabled>Select status</option>
+                <option *ngFor="let stat of status">{{stat}}</option>
+            </select>
             <small class="text-danger" *ngIf="ramsForm.get('ramsStatus')?.invalid && ramsForm.get('ramsStatus')?.touched">
                 Rams Status is req.
             </small>

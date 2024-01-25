@@ -1,0 +1,11 @@
+#Approved {
+    background-color: green;
+}
+
+#Require\ amendments {
+    background-color: yellow;
+}
+
+#Require\ reapproval {
+    background-color: red;
+}
