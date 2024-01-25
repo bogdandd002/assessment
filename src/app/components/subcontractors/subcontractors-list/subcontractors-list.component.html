@@ -1,0 +1,38 @@
+<h3 class="mt-5 mb-3">ram List</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Activities</th>
+            <th>Start Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sub of subcon ">
+            <td>{{sub.subconName}}</td>
+            <td>{{sub.suconActivities}}</td>
+            <td>{{sub.startDate}}</td>
+            <td>
+                <button class="btn btn-sm btn-danger mx-1" (click)="deleteSubcon(sub.id)">Delete</button>
+                <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/edit', sub.id]">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button (click)="newSubcon()" class="btn btn-primary">Add Subcontractor</button>
+    </div>
+  </div>
+</div>
+
+<ul *ngIf="subcon.length; else noram">
+
+</ul>
+
+<ng-template #noram>
+    <p>No subcontractors available.</p>
+</ng-template>

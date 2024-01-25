@@ -1,0 +1,42 @@
+<h3 class="mt-5 mb-3">ram List</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subcontractor</th>
+            <th>Rev No.</th>
+            <th>Rev Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ram of rams">
+            <td>{{ram.ramsTitle}}</td>
+            <td>{{ram.ramsSubcon}}</td>
+            <td>{{ram.revNumber}}</td>
+            <td> {{ram.revDate}} </td>
+            <td>{{ram.ramsStatus}}</td>
+            <td>
+                <button class="btn btn-sm btn-danger mx-1" (click)="deleteRam(ram.id)">Delete</button>
+                <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/edit', ram.id]">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button (click)="newRams()" class="btn btn-primary">New Rams</button>
+    </div>
+  </div>
+</div>
+
+<ul *ngIf="rams.length; else noram">
+
+</ul>
+
+<ng-template #noram>
+    <p>No ram available.</p>
+</ng-template>
