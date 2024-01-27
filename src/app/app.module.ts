@@ -9,6 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddRamsComponent } from './components/rams-list/add-rams/add-rams/add-rams.component';
 import { SubcontractorsListComponent } from './components/subcontractors/subcontractors-list/subcontractors-list.component';
 import { AddSubcontractorComponent } from './components/subcontractors/add-subcontractor/add-subcontractor/add-subcontractor.component';
+import { ReportIssueComponent } from './components/report-issue/report-issue/report-issue.component';
+import { ListIssuesComponent } from './components/report-issue/issue-list/list-issues/list-issues.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormGroup } from 'react-bootstrap';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -18,13 +24,19 @@ import { AddSubcontractorComponent } from './components/subcontractors/add-subco
     RamsListComponent,
     AddRamsComponent,
     SubcontractorsListComponent,
-    AddSubcontractorComponent,   
+    AddSubcontractorComponent,
+    ReportIssueComponent,
+    ListIssuesComponent,   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    HttpClientModule, 
+    BrowserAnimationsModule, 
+    FormsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

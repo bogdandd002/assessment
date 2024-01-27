@@ -40,7 +40,7 @@ export class AddRamsComponent implements OnInit {
 
     if(id){
       let rams = this.ramsService.getRam(id)
-
+    
       if(rams)
         this.ramsForm.patchValue(rams)
     }
@@ -55,15 +55,17 @@ export class AddRamsComponent implements OnInit {
 
       if(id){
         // Update
-        this.ramsService.reviseRams(id, rams)
+        this.ramsService.reviseRams(id, rams).subscribe(() => {
+          console.log("Update request processed")
+        })
       } else {
         // New
-        this.ramsService.addRams(rams)   
+        this.ramsService.addRams(rams).subscribe(() => {
+          console.log("Update request processed")   
 
-      }
+      })
 
       this.router.navigate(['/rams'])
     }
   }
-
-}
+} }

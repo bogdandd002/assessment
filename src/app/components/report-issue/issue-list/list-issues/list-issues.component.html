@@ -1,0 +1,38 @@
+<h3 class="mt-5 mb-3">ram List</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Issue date</th>
+            <th>Issue closing date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let is of issue">
+            <td>{{is.title}}</td>
+            <td>{{is.issueDate | date:'dd-MM-YYYY hh:mm'}}{{is.subcon}}</td>
+            <td>{{is.issueClosingDate | date:'dd-MM-YYYY hh:mm'}}{{is.type}}</td>
+            <td>
+                <button class="btn btn-sm btn-secondary mx-1" (click)="deleteSubcon(is.id)">Close issue</button>
+                <!-- <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/close', is.id]">Close issue</button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+  <div class="row">
+    <div class="col-xs-3">
+      <button (click)="newIssue()" class="btn btn-primary">Add New Issue</button>
+    </div>
+  </div>
+</div>
+
+<ul *ngIf="issue.length; else noram">
+
+</ul>
+
+<ng-template #noram>
+    <p>No issues reported.</p>
+</ng-template>

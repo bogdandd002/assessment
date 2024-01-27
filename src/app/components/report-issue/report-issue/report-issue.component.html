@@ -1,0 +1,57 @@
+<h3 class="mt-5 mb-3">Report an issue</h3>
+<hr>
+
+<form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+    <div>
+    <div class="row mb-3">
+        <div class="col-xs-3">
+            <!-- <label>
+                <input type="radio" value="Enviromental" formControlName="type" class="radio-btn">
+                  <span>Enviromental</span>
+              </label>
+              <label style="padding-left: 10%;">
+                <input type="radio" value="H&S" formControlName="type">
+                  <span>Healt & Safety</span>
+              </label> -->
+              <mat-button-toggle-group formControlName="type"  aria-label="Font Style">
+                <mat-button-toggle value="Enviromental">Enviromental</mat-button-toggle>
+                <mat-button-toggle value="H&S">Health & Safety</mat-button-toggle>
+              </mat-button-toggle-group>
+            <small class="text-danger" *ngIf="issueForm.get('type')?.invalid && issueForm.get('type')?.touched">
+                Please sellect issue type.
+            </small>
+        </div>
+        </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Title:</label>
+            <input class="form-control" type="text" formControlName="issueTitle">
+            <small class="text-danger" *ngIf="issueForm.get('issueTitle')?.invalid && issueForm.get('issueTitle')?.touched">
+                Issue title is required.
+            </small>
+        </div>
+
+        <div class="col">
+            <label class="form-label">Brief description:</label>
+            <input class="form-control" type="text" formControlName="issueDescrition">
+            <small class="text-danger" *ngIf="issueForm.get('issueDescrition')?.invalid && issueForm.get('issueDescrition')?.touched">
+                Descrition is required.
+            </small>
+        </div>
+    </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">Subcontractor:</label>
+            <select class="form-control" type="text" formControlName="subcon">
+                <option value="" disabled>Select subcontractor</option>
+                <option *ngFor="let sub of subcon">{{sub.subconName}}</option>
+            </select>
+                <small class="text-danger" *ngIf="issueForm.get('subcon')?.invalid && issueForm.get('subcon')?.touched">
+                    Subcontractor is required.
+                </small>
+            </div>
+        </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="issueForm.invalid">Submit</button>
+  </div>
+</form>

@@ -18,7 +18,9 @@ export class RamsListComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.rams = this.addRams.getRams();
+    this.addRams.getRams().subscribe(data => {
+      this.rams = data;
+    });
   }
 
   newRams(){
@@ -26,7 +28,9 @@ export class RamsListComponent implements OnInit{
   }
 
   deleteRam(id: string){
-    this.addRams.deleteRams(id);
+    this.addRams.deleteRams(id).subscribe(() => {
+      console.log("Delete request got procesed")
+    });
   }
 
 }
