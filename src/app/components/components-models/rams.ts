@@ -14,7 +14,7 @@
 // }
 
 export interface Rams {
-    id: string,
+    id: number,
     ramsTitle: string,
     ramsSubcon: string,
     revNumber: number,

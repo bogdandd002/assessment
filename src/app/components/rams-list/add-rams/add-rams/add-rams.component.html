@@ -34,7 +34,7 @@
 
         <div class="col">
             <label class="form-label">Revision Date:</label>
-            <input class="form-control" type="date" formControlName="revDate">
+            <input class="form-control" type="date" formControlName="revDate">              
             <small class="text-danger" *ngIf="ramsForm.get('revDate')?.invalid && ramsForm.get('revDate')?.touched">
                 Revision date is required.
             </small>

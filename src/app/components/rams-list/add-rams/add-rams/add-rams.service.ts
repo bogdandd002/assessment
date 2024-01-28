@@ -22,6 +22,9 @@ export class AddRamsService {
 
   // CRUD
 
+  // getRams() {
+  //   return this.http.get<any>(this.apiUrl+ '/api/rams');
+  // }
   getRams(): Observable<Rams[]> {
     return this.http.get<Rams[]>(this.apiUrl + "/rams");
   }
@@ -32,14 +35,13 @@ export class AddRamsService {
 
   addRams(ram: Rams): Observable <void> {
 
-    return this.http.post<void>(this.apiUrl + "/ram", ram)
-    ram.id = Date.now().toString();
-    this.rams.push(ram);
+    return this.http.post<void>(this.apiUrl + "/rams", ram)
+    // this.rams.push(ram);
     // localStorage.setItem("rams", JSON.stringify(this.rams));
   }
 
-  deleteRams(id: string): Observable<void> {
-    return this.http.delete<void>(this.apiUrl + "/rams" + id);
+  deleteRams(id): Observable<void> {
+    return this.http.delete<void>(this.apiUrl + "/rams/" + id);
     // localStorage.setItem("rams", JSON.stringify(this.rams));
   }
 
