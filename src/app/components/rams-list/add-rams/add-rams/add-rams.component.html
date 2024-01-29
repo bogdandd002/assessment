@@ -15,7 +15,7 @@
             <label class="form-label">Subcontractor:</label>
             <select class="form-control" type="text" formControlName="ramsSubcon">
                 <option value="" disabled>Select subcontractor</option>
-                <option *ngFor="let sub of subcon">{{sub.subconName}}</option>
+                <option *ngFor="let sub of subcon | async">{{sub.subconName}}</option>
             </select>
             <small class="text-danger" *ngIf="ramsForm.get('ramsSubcon')?.invalid && ramsForm.get('ramsSubcon')?.touched">
                 Suncontractor is required.

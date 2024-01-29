@@ -5,6 +5,7 @@ import { Rams } from '../../../components-models/rams';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subcontractors } from '../../../components-models/subcontractors';
 import { AddSubcontractorService } from '../../../subcontractors/add-subcontractor/add-subcontractor.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-rams',
@@ -14,7 +15,7 @@ import { AddSubcontractorService } from '../../../subcontractors/add-subcontract
 export class AddRamsComponent implements OnInit {
 
   status: string [] = ["Approved", "Require amendments", "Require reapproval"];
-  subcon: Subcontractors [] = [];
+  subcon: Observable <Subcontractors[]>; 
   ramsForm: FormGroup = new FormGroup({});
 
   constructor(
@@ -61,7 +62,7 @@ export class AddRamsComponent implements OnInit {
       } else {
         // New
         this.ramsService.addRams(rams).subscribe(() => {
-          console.log("Update request processed")   
+          console.log(" New rams added")   
 
       })
 

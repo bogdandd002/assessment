@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Subcontractors } from '../../components-models/subcontractors';
 import { Router } from '@angular/router';
 import { AddSubcontractorService } from '../add-subcontractor/add-subcontractor.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -12,7 +13,7 @@ import { AddSubcontractorService } from '../add-subcontractor/add-subcontractor.
 })
 export class SubcontractorsListComponent implements OnInit{
 
-  subcon: Subcontractors [] = [];
+  subcon: Subcontractors[] = [];
 
   constructor(
     private router: Router,
@@ -20,7 +21,9 @@ export class SubcontractorsListComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.subcon = this.addSubcon.getsubcon();
+    this.addSubcon.getsubcon().subscribe(data => {
+      this.subcon = data;
+    });
   }
 
   newSubcon(){
@@ -28,7 +31,9 @@ export class SubcontractorsListComponent implements OnInit{
   }
 
   deleteSubcon(id: string){
-    this.addSubcon.deletesubcon(id);
+    this.addSubcon.deletesubcon(id).subscribe(() => {
+      console.log("Delete request got processed")
+    });
   }
 
 }

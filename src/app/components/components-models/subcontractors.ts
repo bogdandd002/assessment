@@ -1,5 +1,5 @@
 export interface Subcontractors {
-    id: string;
+    id: number;
     subconName: string;
     suconActivities: string; 
     startDate: Date;

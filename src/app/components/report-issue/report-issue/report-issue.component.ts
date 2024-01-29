@@ -6,6 +6,8 @@ import { Subcontractors } from '../../components-models/subcontractors';
 import { ReportService } from '../report.service';
 import { AddSubcontractorService } from '../../subcontractors/add-subcontractor/add-subcontractor.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-report-issue',
@@ -14,7 +16,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 })
 export class ReportIssueComponent {
 
-  subcon: Subcontractors [] = [];
+  subcon: Observable <Subcontractors []>;
   issueForm: FormGroup = new FormGroup({});
 
   constructor(

@@ -44,7 +44,7 @@
                 <label class="form-label">Subcontractor:</label>
             <select class="form-control" type="text" formControlName="subcon">
                 <option value="" disabled>Select subcontractor</option>
-                <option *ngFor="let sub of subcon">{{sub.subconName}}</option>
+                <option *ngFor="let sub of subcon | async">{{sub.subconName}}</option>
             </select>
                 <small class="text-danger" *ngIf="issueForm.get('subcon')?.invalid && issueForm.get('subcon')?.touched">
                     Subcontractor is required.

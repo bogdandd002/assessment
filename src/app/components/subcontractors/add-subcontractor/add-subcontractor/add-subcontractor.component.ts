@@ -47,10 +47,14 @@ export class AddSubcontractorComponent {
 
       if(id){
         // Update
-        this.subconService.revisesubcon(id, rams)
+        this.subconService.revisesubcon(id, rams).subscribe(() => {
+          console.log("Update request processed")
+        })
       } else {
         // New
-        this.subconService.addsubcon(rams)   
+        this.subconService.addsubcon(rams).subscribe(() => {
+          console.log("New Subcontractor added")
+        })   
 
       }
 
