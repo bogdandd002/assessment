@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Rams } from '../../../components-models/rams';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { map } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +30,11 @@ export class AddRamsService {
   //   return this.http.get<any>(this.apiUrl+ '/api/rams');
   // }
   getRams(): Observable<Rams[]> {
-    return this.http.get<Rams[]>(this.apiUrl + "/rams");
+    return this.http.get<Rams[]>(this.apiUrl + "/rams")
   }
 
   getRam(id): Observable<Rams> {
-    return this.http.get<Rams>(this.apiUrl + "/ram/" + id);
+    return this.http.get<Rams>(this.apiUrl + "/rams/" + id);
   }
 
   addRams(ram: Rams): Observable <void> {
@@ -42,12 +45,14 @@ export class AddRamsService {
   }
 
   deleteRams(id): Observable<void> {
-    return this.http.delete<void>(this.apiUrl + "/rams/" + id);
+    return this.http.delete<void>(this.apiUrl + "/rams/" + id)
+      }
+     
     // localStorage.setItem("rams", JSON.stringify(this.rams));
-  }
+  
 
-  reviseRams(id: string, updatedram: Rams): Observable <void> {
-    return this.http.put<void>(this.apiUrl + "/ram" + id, updatedram)
+  reviseRams(id, updatedram: Rams): Observable <void> {
+    return this.http.put<void>(this.apiUrl + "/rams/" + id, updatedram)
     
     // localStorage.setItem("rams", JSON.stringify(this.rams));;;
   }

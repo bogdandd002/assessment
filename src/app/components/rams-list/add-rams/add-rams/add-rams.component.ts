@@ -40,10 +40,13 @@ export class AddRamsComponent implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id')
 
     if(id){
-      let rams = this.ramsService.getRam(id)
+      this.ramsService.getRam(id).subscribe(val => {
+        if(val)
+          this.ramsForm.patchValue(val)
+      })
     
-      if(rams)
-        this.ramsForm.patchValue(rams)
+      // if(rams)
+      //   this.ramsForm.patchValue(rams)
     }
   }
 
@@ -56,17 +59,18 @@ export class AddRamsComponent implements OnInit {
 
       if(id){
         // Update
-        this.ramsService.reviseRams(id, rams).subscribe(() => {
+        this.ramsService.reviseRams(id, rams).subscribe( ()=> {
           console.log("Update request processed")
+          this.router.navigate(['/rams'])
         })
       } else {
         // New
-        this.ramsService.addRams(rams).subscribe(() => {
-          console.log(" New rams added")   
-
+        this.ramsService.addRams(rams).subscribe( result => {
+          console.log("Rams added")
+          this.router.navigate(['/rams'])
       })
-
-      this.router.navigate(['/rams'])
+      
+      // this.router.navigate(['/rams'])
     }
   }
 } }

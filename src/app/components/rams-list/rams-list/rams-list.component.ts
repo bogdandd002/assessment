@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rams } from '../../components-models/rams';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AddRamsService } from '../add-rams/add-rams/add-rams.service';
 
 @Component({
@@ -19,7 +19,8 @@ export class RamsListComponent implements OnInit{
   ngOnInit(): void {
 
     this.addRams.getRams().subscribe(data => {
-      this.rams = data;
+      this.rams = data
+      console.log('data 1'+ data)
     });
   }
 
@@ -29,7 +30,7 @@ export class RamsListComponent implements OnInit{
 
   deleteRam(id: string){
     this.addRams.deleteRams(id).subscribe(() => {
-      console.log("Delete request got procesed")
+      this.ngOnInit();
     });
   }
 
