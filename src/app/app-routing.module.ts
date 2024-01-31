@@ -8,6 +8,7 @@ import { AddSubcontractorComponent } from "./components/subcontractors/add-subco
 import { SubcontractorsListComponent } from "./components/subcontractors/subcontractors-list/subcontractors-list.component";
 import { ReportIssueComponent } from "./components/report-issue/report-issue/report-issue.component";
 import { ListIssuesComponent } from "./components/report-issue/issue-list/list-issues/list-issues.component";
+import { AuthComponent } from "./auth/auth/auth.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'addissue', component: ReportIssueComponent},
     {path:"close/:id", component: ReportIssueComponent},
     {path: 'issues', component: ListIssuesComponent},
+    {path: 'auth', component: AuthComponent},
     
     
 ];

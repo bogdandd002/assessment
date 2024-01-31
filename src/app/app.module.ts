@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup } from 'react-bootstrap';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { AuthComponent } from './auth/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     SubcontractorsListComponent,
     AddSubcontractorComponent,
     ReportIssueComponent,
-    ListIssuesComponent,   
+    ListIssuesComponent,
+    AuthComponent,   
   ],
   imports: [
     BrowserModule,
