@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup } from 'react-bootstrap';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AuthComponent } from './auth/auth/auth.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthComponent } from './auth/auth/auth.component';
     AddSubcontractorComponent,
     ReportIssueComponent,
     ListIssuesComponent,
-    AuthComponent,   
+    AuthComponent,
+    LoadingSpinnerComponent,   
   ],
   imports: [
     BrowserModule,
