@@ -3,6 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { User } from '../../auth/auth/user.model';
 
 @Component({
   selector: 'app-layout',
@@ -19,17 +20,20 @@ export class LayoutComponent implements OnInit{
   // part of authentification process 
   isAuthenticated = false;
   private userSub: Subscription;
-  
+  userDetails = {} as User;
+
   constructor(
     private authService: AuthService,
     private observer: BreakpointObserver
     ){}
   
+
   ngOnInit() {
 
        // Part of the authentification process - controlling link shown
-   this. userSub = this.authService.user.subscribe(user => {
+   this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
+      this.userDetails = user;
    });
    
     // Part of the sidebar layout process - controlling sidebar

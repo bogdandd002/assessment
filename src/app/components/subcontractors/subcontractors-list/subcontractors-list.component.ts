@@ -14,15 +14,18 @@ import { Observable } from 'rxjs';
 export class SubcontractorsListComponent implements OnInit{
 
   subcon: Subcontractors[] = [];
+  isLoading = false;
 
   constructor(
     private router: Router,
     private addSubcon: AddSubcontractorService){}
 
   ngOnInit(): void {
+    this.isLoading = true;
 
     this.addSubcon.getsubcon().subscribe(data => {
       this.subcon = data;
+      this.isLoading =false;
     });
   }
 

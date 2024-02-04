@@ -1,6 +1,8 @@
-<h3 class="mt-5 mb-3">ram List</h3>
-
-<table class="table table-striped">
+<h2 class="mt-5 mb-3">All Subcontractors</h2>
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+    </div>
+<table class="table table-striped" *ngIf="!isLoading">
     <thead>
         <tr>
             <th>Name</th>

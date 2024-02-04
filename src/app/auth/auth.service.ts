@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, catchError, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, tap } from 'rxjs';
 import { throwError } from 'rxjs';
 import { User } from './auth/user.model';
 import { Router } from '@angular/router';
@@ -19,6 +19,8 @@ export interface AuthResponseData {
 })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  user$ : Observable<User> = this.user.asObservable();
+
   private tokenExpirationTimer: any;
 
  constructor(private http: HttpClient, private router: Router) { }
@@ -39,9 +41,11 @@ export class AuthService {
         resData.localId,
         resData.email,   
         resData.token, 
-        +resData.expiresIn)
-    })
+        +resData.expiresIn);
+        }
+    )
     );
+    this.router.navigate(['/auth'])
   }
  
   login(email: string, password: string) {
@@ -60,8 +64,10 @@ export class AuthService {
         resData.token, 
         +resData.expiresIn
         );
+        this.router.navigate(['/'])
     })
     );
+    
   }
 
   autoLogin() {
