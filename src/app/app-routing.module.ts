@@ -9,12 +9,13 @@ import { SubcontractorsListComponent } from "./components/subcontractors/subcont
 import { ReportIssueComponent } from "./components/report-issue/report-issue/report-issue.component";
 import { ListIssuesComponent } from "./components/report-issue/issue-list/list-issues/list-issues.component";
 import { AuthComponent } from "./auth/auth/auth.component";
+import { AuthGuard } from "./auth/auth/auth.guard";
 
 
 const routes: Routes = [
     { path:'', component: DashboardComponent},
     { path:'rams', component: RamsListComponent},
-    {path: 'addrams', component: AddRamsComponent},
+    {path: 'addrams', component: AddRamsComponent, canActivate:[AuthGuard]},
     {path:"edit/:id", component: AddRamsComponent},
     {path: 'subcontractors', component: SubcontractorsListComponent},
     {path:"edit_sub/:id", component: AddSubcontractorComponent},

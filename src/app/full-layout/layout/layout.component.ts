@@ -1,42 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import $ from 'jquery';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit{
+  // Part of sidebar setup
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
+  isMobile= true;
+  isCollapsed = false;
+
+  // part of authentification process 
   isAuthenticated = false;
   private userSub: Subscription;
   
-  constructor(private authService: AuthService){}
+  constructor(
+    private authService: AuthService,
+    private observer: BreakpointObserver
+    ){}
   
   ngOnInit() {
-   this. userSub = this.authService.user.subscribe(user => {
-      this.isAuthenticated = !user ? false : true;
-   });
-    window.addEventListener('DOMContentLoaded', event => {
 
-      // Toggle the side navigation
-      const sidebarToggle = document.body.querySelector('#sidebarToggle');
-      if (sidebarToggle) {
-          // Uncomment Below to persist sidebar toggle between refreshes
-          // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-          //     document.body.classList.toggle('sb-sidenav-toggled');
-          // }
-          sidebarToggle.addEventListener('click', event => {
-              event.preventDefault();
-              document.body.classList.toggle('sb-sidenav-toggled');
-              localStorage.setItem('sb|sidebar-toggle', new Boolean(document.body.classList.contains('sb-sidenav-toggled')).toString());
-          });
-      } 
-  });
+       // Part of the authentification process - controlling link shown
+   this. userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+   });
+   
+    // Part of the sidebar layout process - controlling sidebar
+    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+      if(screenSize.matches){
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    });
+
+ 
+
   }
+
+  // controling toggle button
+  toggleMenu() {
+    if(this.isMobile){
+      this.sidenav.toggle();
+      this.isCollapsed = false;
+    } else {
+      this.sidenav.open();
+      this.isCollapsed = !this.isCollapsed;
+    }
+  }
+
 onLogout() {
-  this.authService.logout();
+  this.authService.logout()
 }
 
   ngOnDestroy() {

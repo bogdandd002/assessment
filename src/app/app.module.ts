@@ -13,10 +13,15 @@ import { ReportIssueComponent } from './components/report-issue/report-issue/rep
 import { ListIssuesComponent } from './components/report-issue/issue-list/list-issues/list-issues.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormGroup } from 'react-bootstrap';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner/loading-spinner.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonToggle } from '@angular/material/button-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -35,12 +40,18 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule, 
     HttpClientModule, 
     BrowserAnimationsModule, 
     FormsModule,
-    MatButtonToggleModule
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonToggle,
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
