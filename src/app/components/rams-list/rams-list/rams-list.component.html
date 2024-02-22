@@ -1,4 +1,4 @@
-<h2 class="mt-5 mb-3">All Rams</h2>
+<!-- <h2 class="mt-5 mb-3">All Rams</h2>
 <div *ngIf="isLoading" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
     </div>
@@ -41,4 +41,109 @@
 
 <ng-template #noram>
     <p>No ram available.</p>
-</ng-template>
+</ng-template> -->
+<div *ngIf="isLoading" style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
+  </div> 
+  <ng-container *ngIf="!isLoading">
+    <br>
+<div>
+    <div class="row">
+      <div class="col-xs-3">
+        <button (click)="newRams()" class="btn btn-primary">New Rams</button>
+      </div>
+    </div>
+  </div> <br>
+
+<c-smart-table
+  #smartTable="cSmartTable"
+  activePage="1"
+  cleaner
+  clickableRows
+  [columnFilter]="true"
+  [columnSorter]="true"
+  [columns]="columns"
+  header
+  [itemsPerPageSelect]="true"
+  [itemsPerPage]="[num]"
+  [items]="rams"
+  pagination
+  [sorterValue]="{ column: 'name', state: 'asc' }"
+  [tableBodyProps]="{align: 'middle'}"
+  [tableFilter]="true"
+  [tableHeadProps]="{color: 'warning'}"
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+  <ng-template cTemplateId="tableCustomHeader">
+    <div [cCol]="'auto'" class="p-0 ms-auto">
+      <button cButton color="success" (click)="smartTable.footer = !smartTable.footer">
+        Footer is {{smartTable.footer ? 'ON' : 'OFF'}}
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- <ng-template cTemplateId="tableDetails" let-item="item">
+    <div [visible]="this.details_visible[item._id]===true" cCollapse>
+      <c-card class="rounded-0">
+        <c-card-body>
+          <h5>{{item['ramsTitle']}}</h5>
+          <p class="text-muted">User since: {{item['registered']}}</p>
+        </c-card-body>
+        <c-card-footer>
+          <button cButton color="info" size="sm">
+            User Settings
+          </button>
+          <button cButton class="ms-1" color="danger" size="sm">
+            Delete
+          </button>
+        </c-card-footer>
+      </c-card>
+    </div>
+  </ng-template> -->
+  <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
+    <td [cTableActive]="smartTable.tableDataCellProps(item, columnName)?.['active']"
+        [cTableColor]="smartTable.tableDataCellProps(item, columnName)?.color"
+        [cAlign]="smartTable.tableDataCellProps(item, columnName)?.align"
+        [ngClass]="smartTable.tableDataCellClasses(item, columnName)"
+    >
+      <ng-container [ngSwitch]="columnName">
+        <ng-container *ngSwitchCase="'ramsStatus'">
+          <c-badge [color]="getBadge(tdContent)">
+            {{(item[columnName])}}
+          </c-badge>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated">
+            <ng-container *ngSwitchCase="'show'" class="py-2" >
+              <button (click)="deleteRam(item['id'])" cButton color="secondary" size="sm" variant="outline">
+                Revise
+              </button>       
+            </ng-container>
+            <ng-container *ngSwitchCase="'show2'" class="py-2" >
+              <button (click)="deleteRam(item['id'])" cButton color="danger" size="sm" variant="outline">
+                Delete
+              </button>       
+        </ng-container>
+        
+      </ng-container>    
+      <ng-container *ngSwitchDefault>
+          {{tdContent}}
+      </ng-container>
+      </ng-container>
+    </td>
+  </ng-template>
+</c-smart-table>
+
+  </ng-container>
+
+
+<!-- <c-smart-table
+    activePage="2"
+    [columnFilter]="true"
+    [columnSorter]="true"
+    header
+    [items]="rams"
+    pagination
+    [itemsPerPage]="[num]"
+    [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+</c-smart-table> -->

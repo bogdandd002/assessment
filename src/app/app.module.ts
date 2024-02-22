@@ -22,6 +22,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
+import { FlexModule } from '@angular/flex-layout';
+import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { DropdownModule, ProgressModule,  WidgetModule, GridModule, AvatarModule } from '@coreui/angular-pro';
+import { ChartjsModule } from '@coreui/angular-chartjs';
+import { SmartTableModule, SharedModule, ButtonModule, TableModule, UtilitiesModule } from '@coreui/angular-pro';
+
+
 
 @NgModule({
   declarations: [
@@ -51,9 +60,25 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatButtonToggle,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatBadgeModule,
+    FlexModule,
+    IconModule,
+    DropdownModule,
+    ProgressModule,
+    SharedModule,
+    WidgetModule,
+    IconModule,
+    ChartjsModule,
+    GridModule,
+    SmartTableModule,
+    ButtonModule,
+    TableModule,
+    UtilitiesModule,
+    AvatarModule
   ],
-  providers: [],
+  providers: [IconSetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

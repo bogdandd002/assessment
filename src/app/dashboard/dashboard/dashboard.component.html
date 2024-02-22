@@ -1,1 +1,149 @@
-<p>dashboard works!</p>
+<!-- <div *ngIf="isLoading" style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
+  </div>
+<ng-container *ngIf="isObject(num) && !isLoading">
+<div fxLayout="row wrap" fxLayoutGap="50">
+<div class="fst-div">
+  <mat-card class="rams-card" >
+    
+    <mat-card-content>  
+  <h1>  
+    <mat-icon color="primary" >fact_check</mat-icon>
+     {{num.tot}} register RAMS          
+  </h1>
+    </mat-card-content>
+ 
+</mat-card>
+</div>
+
+<div class="snd-div">
+  <mat-card  >
+
+    <mat-card-content>  
+  <h1>  
+    <mat-icon color="primary" >fact_check</mat-icon>
+     {{num.tot}} register RAMS          
+  </h1>
+    </mat-card-content>
+
+</mat-card>
+</div>
+
+</div>
+
+ </ng-container> 
+
+
+
+
+
+ -->
+ <ng-container *ngIf="isLoading" >
+  <c-row>
+    <c-col lg="12" xs="12"></c-col>
+    <c-col lg="12" xs="12">
+      <app-loading-spinner></app-loading-spinner>
+    </c-col>  
+  </c-row>  
+ </ng-container>
+ <ng-container *ngIf="isObject(num) && !isLoading">
+ <c-row>
+  <c-col lg="6" xs="12">
+    <c-widget-stat-f
+      [title]="'Registered rams in total'"
+      class="mb-3"
+      color="primary"
+      padding
+      value="{{num.tot}} No"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+  <c-col lg="6" xs="12">
+    <c-widget-stat-f
+      [title]="'Rams approved in total'"
+      class="mb-3"
+      color="success"
+      padding
+      value="{{num.total_ap}} No"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+  <c-col lg="6" xs="12">
+    <!-- <c-widget-stat-f
+      [title]="'Widget Title'"
+      class="mb-3"
+      color="primary"
+      padding
+      value="89.9%"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+      <ng-template cTemplateId="widgetFooterTemplate">
+        <a class="font-weight-bold font-xs text-medium-emphasis"
+           href="https://coreui.io/angular"
+           target="_blank">
+           <div class="d-flex align-items-center justify-content-between">
+            <span>View more</span>
+            <svg [cIcon]="icons.cilArrowRight" width="16"></svg>
+          </div> 
+        </a>
+      </ng-template>
+    </c-widget-stat-f> -->
+  </c-col>
+  <c-col lg="6" xs="12">
+    <c-widget-stat-f
+      [title]="'Rams pending approval'"
+      class="mb-3"
+      color="warning"
+      padding
+      value="{{num.total_am}} No"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+      <!-- <ng-template cTemplateId="widgetFooterTemplate">
+        <a class="font-weight-bold font-xs text-medium-emphasis"
+           href="https://coreui.io/angular"
+           target="_blank">
+          <div class="d-flex align-items-center justify-content-between">
+            <span>View more</span>
+            <svg [cIcon]="icons.cilArrowRight" width="16"></svg>
+          </div> 
+        </a>
+      </ng-template> -->
+    </c-widget-stat-f>
+  </c-col>
+  <c-col lg="6" xs="12">
+    <!-- <c-widget-stat-f
+      [title]="'Widget Titl'"
+      class="mb-3"
+      color="primary"
+      value="89.9%"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f> -->
+  </c-col>
+  <c-col lg="6" xs="12">
+    <c-widget-stat-f
+      [title]="'Rams require amendments'"
+      class="mb-3"
+      color="danger"
+      padding
+      value="{{num.total_re}} No"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+</c-row>
+</ng-container> 
