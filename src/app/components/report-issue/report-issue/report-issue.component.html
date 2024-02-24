@@ -1,7 +1,7 @@
 <h3 class="mt-5 mb-3">Report an issue</h3>
 <hr>
 
-<form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="issueForm"  (ngSubmit)="onSubmit()">
     <div>
     <div class="row mb-3">
         <div class="col-xs-3">
@@ -13,7 +13,7 @@
                 <input type="radio" value="H&S" formControlName="type">
                   <span>Healt & Safety</span>
               </label> -->
-              <mat-button-toggle-group formControlName="type"  aria-label="Font Style">
+              <mat-button-toggle-group formControlName="type" ngDefaultControl aria-label="Font Style">
                 <mat-button-toggle value="Enviromental">Enviromental</mat-button-toggle>
                 <mat-button-toggle value="H&S">Health & Safety</mat-button-toggle>
               </mat-button-toggle-group>

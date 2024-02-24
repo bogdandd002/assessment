@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AddRamsService } from './add-rams.service';
+import { AppModule } from '../../../../app.module';
 
 describe('AddRamsService', () => {
   let service: AddRamsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        AppModule],
+    });
     service = TestBed.inject(AddRamsService);
   });
 
