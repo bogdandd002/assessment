@@ -21,7 +21,7 @@ export class LayoutComponent implements OnInit{
   isAuthenticated = false;
   private userSub: Subscription;
   userDetails = {} as User;
-
+      
   constructor(
     private authService: AuthService,
     private observer: BreakpointObserver
